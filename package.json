@@ -1,0 +1,19 @@
+{
+  "name": "kualiprogrammingchallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinep52/KualiProgrammingChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devinep52/KualiProgrammingChallenge/issues"
+  },
+  "homepage": "https://github.com/devinep52/KualiProgrammingChallenge#readme"
+}
