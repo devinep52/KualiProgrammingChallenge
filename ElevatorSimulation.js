@@ -1,6 +1,7 @@
+module.exports = ElevatorSimulation
 class ElevatorSimulation {
 
-	constructor(floors, elevators) {
+	ElevatorSimulation(floors, elevators) {
 		this.floors = floors;
 		this.elevators = elevators;
 	}
