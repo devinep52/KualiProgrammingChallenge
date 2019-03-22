@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
   elevatorSimulation.runSimulation();
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('server initiated1\n');
+  res.end('server initiated\n');
 });
 
 //listen for request on port 3000, and as a callback function have the port listened on logged

@@ -7,33 +7,26 @@ class ElevatorSimulation {
 		this.secondsPerPassenger = 5;
 		this.secondsSinceLastPassenger = 0;
 		this.elevatorArray = [];
-		populateElevatorArray();
-	}
-	
-	populateElevatorArray() {
-		for(int elevatorId = 1; elevatorId <= this.elevators; elevatorId++) {
+		for(let elevatorId = 1; elevatorId <= this.elevators; elevatorId++) {
 			let elevator = new Elevator(elevatorId);
 			this.elevatorArray.push(elevator);
 		}
 	}
-
+	
 	runSimulation() {
 		console.log('running simulation for ' + this.floors + ' floors and ' + this.elevators + ' elevators.');
 		
 		while(true){
-			if(isPassengerDelayMet()) {
-				requestAnElevator();
+			if(this.isPassengerDelayMet()) {
+				this.requestAnElevator();
 			}
-			await sleep(1000);
+			setTimeout(function(){ 
+			}, 1000);
 		}
 	}
+
 	
-	sleep(ms) {
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-	
-	isPassengerDelayMet()
-	{
+	isPassengerDelayMet(){
 		this.secondsSinceLastPassenger += 1;
 		if(this.secondsPerPassenger == this.secondsSinceLastPassenger) {
 			return true;
@@ -41,10 +34,11 @@ class ElevatorSimulation {
 		return false;
 	}
 	
-	requestAnElevator()
-	{
+	requestAnElevator(){
 		let floor = Math.floor(Math.random() * this.floors) + 1
-		elevator = findClosestElevator(floor);
+		let elevator = this.findClosestElevator(floor);
+		console.log('hailing elevator at floor ' + floor);
+		console.log('elevator id ' + elevator.elevatorId + ' heading there now');
 		if(elevator.currentFloor < floor) {
 			elevator.goUpToFloor(floor);
 		} else if(elevator.currentFloor > floor) {
@@ -57,17 +51,29 @@ class ElevatorSimulation {
 	}
 	
 	findClosestElevator(floor){
-		var arrayLength = this.elevatorArray.length;
+		let arrayLength = this.elevatorArray.length;
 		let closestIndex = 0;
 		let minDistance = this.floors + 1;
-		for (var i = 0; i < arrayLength; i++) {
-			let currentDistance = this.elevatorArray[i].currentFloor - floor
-			if(currentDistance < minDistance) {
-				closestIndex = i;
-				minDistance = currentDistance;
+		for (let i = 0; i < arrayLength; i++) {
+			if(!this.elevatorArray[i].isOutForService()) {
+				let currentDistance = this.elevatorArray[i].currentFloor - floor
+				if(currentDistance < minDistance) {
+					closestIndex = i;
+					minDistance = currentDistance;
+				}
 			}
 		}
 		return this.elevatorArray[closestIndex];
+	}
+	
+	serviceElevators(){
+		let arrayLength = this.elevatorArray.length;
+
+		for (let i = 0; i < arrayLength; i++) {
+			if(this.elevatorArray[i].isOutForService()) {
+				this.this.elevatorArray[i].serviceElevator();
+			}
+		}
 	}
 
 }
