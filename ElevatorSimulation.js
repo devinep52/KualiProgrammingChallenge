@@ -1,13 +1,19 @@
-module.exports = ElevatorSimulation
+const Elevator = require('./Elevator')
 class ElevatorSimulation {
 
-	ElevatorSimulation(floors, elevators) {
+	constructor(floors, elevators) {
 		this.floors = floors;
 		this.elevators = elevators;
 	}
 
 	runSimulation() {
-		alert('running simulation for ' + this.floors + ' floors and ' + this.elevators + ' elevators.');
+		console.log('running simulation for ' + this.floors + ' floors and ' + this.elevators + ' elevators.');
+		let elevatorArray = [];
+		for(int elevatorId = 1; elevatorId <= this.elevators; elevatorId++) {
+			let elevator = new Elevator(elevatorId);
+			elevatorArray.push(elevator);
+		}
 	}
 
 }
+module.exports = ElevatorSimulation

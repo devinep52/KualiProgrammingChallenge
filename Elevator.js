@@ -1,6 +1,6 @@
 class Elevator {
 
-	Elevator(elevatorId){
+	constructor(elevatorId){
 		this.elevatorId = elevatorId;
 		this.stops = 0;
 		this.currentFloor = 1;
@@ -12,6 +12,7 @@ class Elevator {
 			console.log('Elevator number ' + elevatorId + ' is currently on floor ' +
 				currentFloor + ' heading up to ' + floorNumber;
 		}
+		openDoors();
 	}
 	
 	goDownToFloor(floorNumber) {
@@ -20,5 +21,16 @@ class Elevator {
 			console.log('Elevator number ' + elevatorId + ' is currently on floor ' +
 				currentFloor + ' heading down to ' + floorNumber;
 		}
+		openDoors();
+	}
+	
+	openDoors() {
+		console.log('Elevator number ' + elevatorId + ' has opened its doors for passengers');
+		closeDoors();
+	}
+	
+	closeDoors() {
+		console.log('Elevator number ' + elevatorId + ' has closed its doors for passengers');
 	}
 }
+module.exports = Elevator
